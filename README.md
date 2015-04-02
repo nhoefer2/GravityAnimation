@@ -1,6 +1,8 @@
 
 To run it, type in the cmd
+
 javac *.java
+
 java Physics
 
 Have fun with this.
