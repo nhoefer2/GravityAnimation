@@ -35,16 +35,22 @@ public class GraphicsPanel extends JPanel implements MouseListener{
 		}
 		
 		for(Particle p : mParticles){
-			int startRed =(int)((p.getXPos() * 255.0) / (double)(this.getWidth()));
-			Color end = new Color(startRed, (int)((p.getYPos() * 255.0) / (double)(getHeight())), 0);
+			int endRed =(int)((p.getXPos() * 255.0) / (double)(this.getWidth()));
+			int endGreen =  (int)((p.getYPos() * 255.0) / this.getHeight());
+			if(endRed >= 255) endRed = 255;
+			if(endGreen >= 255) endGreen = 255;
+			if(endRed <=0) endRed = 0;
+			if(endGreen <= 0) endGreen = 0;
+			Color end = new Color(endRed, endGreen, 0);
 			//int blue = (int)Math.sqrt((p.getXVelocity() * p.getXVelocity()) + (p.getYVelocity() * p.getYVelocity()));
 			if(mBlue >= 255) mBlue = 0;
+			if(mBlue <= 0) mBlue = 0;
 			int red = (int)(p.getXVelocity() / 255);
 			if(red >= 255) red = 255;
 			int green = (int)(p.getYVelocity() / 255);
 			if(green >= 255) green = 255;
 			Color start = new Color(red, green, (int)mBlue);
-			mBlue += 0.001;
+			mBlue += (Attraction.sGravity / 30.0);
 			GradientPaint gradient = new GradientPaint((int)p.getXPos(), (int)p.getYPos(), start, (int)p.getXPos() + 30, (int)p.getYPos() + 30, end);
 			g2d.setPaint(gradient);
 			g2d.fillOval((int)p.getXPos(), (int)p.getYPos(), 30, 30);
@@ -52,9 +58,9 @@ public class GraphicsPanel extends JPanel implements MouseListener{
 	}
 	
 		public void mouseClicked(MouseEvent e) {
-			//mUniverse.addParticle(new Particle(e.getX(), e.getY()));
-			//System.out.println("clicked");
-			//this.repaint();
+			if(e.getButton() == MouseEvent.BUTTON3){
+				mUniverse.addParticle(new ParticleOne(e.getX(), e.getY()));
+			}
 		}
 		
 		public void mousePressed(MouseEvent e) {
@@ -66,21 +72,25 @@ public class GraphicsPanel extends JPanel implements MouseListener{
 		
 		public void mouseReleased(MouseEvent e) {
 
-			mTimeEnd = System.nanoTime();
-			Particle particle = new Particle(e.getX(), e.getY());
+			if(e.getButton() == MouseEvent.BUTTON1){
+				
 			
-			mXEnd = e.getX();
-			mYEnd = e.getY();
-			long timeDiff = mTimeEnd - mTimeStart;
+				mTimeEnd = System.nanoTime();
+				Particle particle = new Particle(e.getX(), e.getY());
 			
-			double xDiff = mXEnd - mXStart;
-			double yDiff = mYEnd - mYStart;
+				mXEnd = e.getX();
+				mYEnd = e.getY();
+				long timeDiff = mTimeEnd - mTimeStart;
 			
-			particle.setXVelocity((xDiff / timeDiff)  * 50000);
-			particle.setYVelocity((yDiff / timeDiff) * 50000);
+				double xDiff = mXEnd - mXStart;
+				double yDiff = mYEnd - mYStart;
 			
-			mUniverse.addParticle(particle);
-			repaint();
+				particle.setXVelocity((xDiff / timeDiff)  * 50000);
+				particle.setYVelocity((yDiff / timeDiff) * 50000);
+			
+				mUniverse.addParticle(particle);
+				repaint();
+			}
 		}
 		
 		public void mouseEntered(MouseEvent e) {

@@ -31,7 +31,7 @@ public class Universe{
 					mParticles.get(i).changeVelocityBy(fp.getXForce(), fp.getYForce());
 				}
 				
-			}
+			}/*
 			if( (mParticles.get(i).getYPos() >= (mGraphicsPanel.getHeight() - 30.0f)) && mParticles.get(i).getYVelocity() > 0){
 				mParticles.get(i).reverseYVelocity();
 				mParticles.get(i).reduceYVelocity(0.5);
@@ -47,7 +47,7 @@ public class Universe{
 			if (mParticles.get(i).getXPos() >= (mGraphicsPanel.getWidth() - 30.0f) && mParticles.get(i).getXVelocity() > 0){
 				mParticles.get(i).reverseXVelocity();
 				mParticles.get(i).reduceXVelocity(0.5);
-			}
+			}*/
 		}
 	}
 	
