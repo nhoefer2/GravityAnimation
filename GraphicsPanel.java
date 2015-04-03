@@ -45,11 +45,13 @@ public class GraphicsPanel extends JPanel implements MouseListener{
 			//int blue = (int)Math.sqrt((p.getXVelocity() * p.getXVelocity()) + (p.getYVelocity() * p.getYVelocity()));
 			if(mBlue >= 255) mBlue = 0;
 			if(mBlue <= 0) mBlue = 0;
-			int red = (int)(p.getXVelocity() / 255);
-			if(red >= 255) red = 255;
-			int green = (int)(p.getYVelocity() / 255);
-			if(green >= 255) green = 255;
-			Color start = new Color(red, green, (int)mBlue);
+			int startRed = (int)(p.getXVelocity() / 255);
+			if(startRed >= 255) startRed = 255;
+			int startGreen = (int)(p.getYVelocity() / 255);
+			if(startGreen >= 255) startGreen = 255;
+			if(startRed <= 0) startRed = 0;
+			if(startGreen <= 0) startGreen = 0;
+			Color start = new Color(startRed, startGreen, (int)mBlue);
 			mBlue += (Attraction.sGravity / 30.0);
 			GradientPaint gradient = new GradientPaint((int)p.getXPos(), (int)p.getYPos(), start, (int)p.getXPos() + 30, (int)p.getYPos() + 30, end);
 			g2d.setPaint(gradient);

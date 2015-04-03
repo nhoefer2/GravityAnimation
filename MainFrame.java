@@ -61,10 +61,10 @@ public class MainFrame extends JFrame{
 					mUniverse.resetUniverse();
 					break;
 				case "Increase Gravity":
-					Attraction.sGravity += 0.01f;
+					Attraction.sGravity += 0.0001f;
 					break;
 				case "Decrease Gravity":
-					Attraction.sGravity -= 0.01f;
+					Attraction.sGravity -= 0.0001f;
 				break;
 			}
 			
