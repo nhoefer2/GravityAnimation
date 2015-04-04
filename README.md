@@ -1,9 +1,9 @@
 
 To run it, type in the cmd
 
-javac *.java
+javac -d /classes /source/*.java
 
-java Physics
+java /classes Physics
 
 Have fun with this.
 
