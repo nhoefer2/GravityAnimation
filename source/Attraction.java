@@ -21,7 +21,7 @@ public class Attraction{
 		double xDist = Math.abs(inXStart - inXEnd);
 		double yDist = Math.abs(inYStart - inYEnd);
 		
-		double totalForce = sGravity / Math.pow(Math.sqrt((xDist * xDist) + (yDist * yDist)), 1);
+		double totalForce = sGravity / Math.pow(Math.sqrt((xDist * xDist) + (yDist * yDist)), .5);
 		
 		double angle = Math.atan(yDist/xDist);
 		

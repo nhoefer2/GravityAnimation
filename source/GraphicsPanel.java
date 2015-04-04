@@ -52,7 +52,7 @@ public class GraphicsPanel extends JPanel implements MouseListener{
 			if(startRed <= 0) startRed = 0;
 			if(startGreen <= 0) startGreen = 0;
 			Color start = new Color(startRed, startGreen, (int)mBlue);
-			mBlue += (Attraction.sGravity / 30.0);
+			mBlue += (Attraction.sGravity / 5.0);
 			GradientPaint gradient = new GradientPaint((int)p.getXPos(), (int)p.getYPos(), start, (int)p.getXPos() + 30, (int)p.getYPos() + 30, end);
 			g2d.setPaint(gradient);
 			g2d.fillOval((int)p.getXPos(), (int)p.getYPos(), 30, 30);
